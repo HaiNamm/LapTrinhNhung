@@ -1,0 +1,25 @@
+Trong Folder này có chứa file main.c là code của STM32F407VET6 và file UART là code của ESP8266
+ *Lưu ý cho code của STM32F407VET6:
+- theo dõi chỉ số adc từ cửa sổ Live Expressions và điều chỉnh các ngưỡng sau cho phù hợp
+#define SOIL_DETECTION_THRESHOLD  3900
+#define FIRE_DETECTION_THRESHOLD  3900
+#define RAIN_DETECTION_THRESHOLD  3900
+#define GAS_DETECTION_THRESHOLD  600
+- Tốc độ BaudRate trong hàm static void MX_USART1_UART_Init(void) phải trùng với tốc độ đã thiết lập bên ESP8266.
+Ở đây BaudRate được đặt là 19200.
+
+ *Lưu ý cho code của ESP8266: 
+- Kiểm tra các thư viện đã đủ chưa
+- Kiểm tra tốc độ BaudRate đã trung với bên code của STM32F4 chưa.
+- Cập nhật lại giá trị cho các dòng code sau 
+const char* WIFI_SSID = "";		// Tên wifi
+const char* WIFI_PASSWORD = "";		// Mật khẩu wifi
+const char* FIREBASE_HOST = "";		// Địa chỉ URL của Realtime Firebase
+const char* FIREBASE_AUTH = "";		// Mã API key lấy trong settings của Firebase
+- Muốn lấy giá trị của firebase phải dẫn đúng đường dẫn
+
+ *Lưu ý khi dùng Firebase:
+- Server phải đặt tại nam5 (us-central) để phần mềm Kodular có thể kết nối được tới Firebase.
+
+ *Lưu ý khi dùng phần mềm Kodular:
+- Phải cập nhật file JSON đăng kí từ Firebase vào ứng dụng.
